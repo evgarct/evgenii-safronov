@@ -1,10 +1,10 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { signOut as authSignOut } from "@/auth";
 import { revalidateContent } from "@/lib/cache";
 import { requireOwner } from "@/lib/auth";
 import { setContentStatus } from "@/lib/content";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { ContentStatus } from "@/lib/content-types";
 
 export async function changeStatus(formData: FormData) {
@@ -19,7 +19,6 @@ export async function changeStatus(formData: FormData) {
 }
 
 export async function signOut() {
-  const supabase = await createSupabaseServerClient();
-  await supabase.auth.signOut();
+  await authSignOut({ redirect: false });
   redirect("/");
 }

@@ -1,38 +1,36 @@
 import { demoContent } from "@/lib/demo-content";
+import { databaseConfigured, getSql } from "@/lib/db";
 import type {
   ContentInput,
   ContentItem,
   ContentKind,
   ContentStatus,
 } from "@/lib/content-types";
-import {
-  createSupabaseAdminClient,
-  createSupabaseServerClient,
-} from "@/lib/supabase/server";
-import { supabaseConfigured } from "@/lib/supabase/config";
 
 export async function listPublished(kind?: ContentKind) {
-  if (!supabaseConfigured) {
+  if (!databaseConfigured) {
     return demoContent
       .filter((item) => item.status === "published" && (!kind || item.kind === kind))
       .sort((a, b) => (b.published_at ?? "").localeCompare(a.published_at ?? ""));
   }
 
-  const supabase = await createSupabaseServerClient();
-  let query = supabase
-    .from("content")
-    .select("*")
-    .eq("status", "published")
-    .order("published_at", { ascending: false });
-
-  if (kind) query = query.eq("kind", kind);
-  const { data, error } = await query;
-  if (error) throw error;
-  return data as ContentItem[];
+  const sql = getSql();
+  const rows = kind
+    ? await sql`
+        select * from content
+        where status = 'published' and kind = ${kind}
+        order by published_at desc
+      `
+    : await sql`
+        select * from content
+        where status = 'published'
+        order by published_at desc
+      `;
+  return rows as ContentItem[];
 }
 
 export async function getPublishedBySlug(kind: ContentKind, slug: string) {
-  if (!supabaseConfigured) {
+  if (!databaseConfigured) {
     return (
       demoContent.find(
         (item) =>
@@ -43,54 +41,55 @@ export async function getPublishedBySlug(kind: ContentKind, slug: string) {
     );
   }
 
-  const supabase = await createSupabaseServerClient();
-  const { data, error } = await supabase
-    .from("content")
-    .select("*")
-    .eq("kind", kind)
-    .eq("slug", slug)
-    .eq("status", "published")
-    .maybeSingle();
-  if (error) throw error;
-  return data as ContentItem | null;
+  const sql = getSql();
+  const rows = await sql`
+    select * from content
+    where kind = ${kind} and slug = ${slug} and status = 'published'
+    limit 1
+  `;
+  return (rows[0] as ContentItem | undefined) ?? null;
 }
 
 export async function listAllContent(status?: ContentStatus) {
-  if (!supabaseConfigured || !process.env.SUPABASE_SECRET_KEY) {
+  if (!databaseConfigured) {
     return status ? demoContent.filter((item) => item.status === status) : demoContent;
   }
 
-  const supabase = createSupabaseAdminClient();
-  let query = supabase
-    .from("content")
-    .select("*")
-    .order("updated_at", { ascending: false });
-  if (status) query = query.eq("status", status);
-  const { data, error } = await query;
-  if (error) throw error;
-  return data as ContentItem[];
+  const sql = getSql();
+  const rows = status
+    ? await sql`
+        select * from content
+        where status = ${status}
+        order by updated_at desc
+      `
+    : await sql`select * from content order by updated_at desc`;
+  return rows as ContentItem[];
 }
 
 export async function getContentById(id: string) {
-  const supabase = createSupabaseAdminClient();
-  const { data, error } = await supabase
-    .from("content")
-    .select("*")
-    .eq("id", id)
-    .single();
-  if (error) throw error;
-  return data as ContentItem;
+  const sql = getSql();
+  const rows = await sql`select * from content where id = ${id} limit 1`;
+  const item = rows[0] as ContentItem | undefined;
+  if (!item) throw new Error("Content not found");
+  return item;
 }
 
 export async function createContent(input: ContentInput) {
-  const supabase = createSupabaseAdminClient();
-  const { data, error } = await supabase
-    .from("content")
-    .insert({ ...input, status: "draft" })
-    .select()
-    .single();
-  if (error) throw error;
-  return data as ContentItem;
+  const sql = getSql();
+  const rows = await sql`
+    insert into content (
+      kind, slug, title, summary, body_markdown, status, seo_title,
+      seo_description, cover_image_url, featured
+    )
+    values (
+      ${input.kind}, ${input.slug}, ${input.title}, ${input.summary},
+      ${input.body_markdown}, 'draft', ${input.seo_title ?? null},
+      ${input.seo_description ?? null}, ${input.cover_image_url ?? null},
+      ${input.featured ?? false}
+    )
+    returning *
+  `;
+  return rows[0] as ContentItem;
 }
 
 export async function updateContent(
@@ -98,23 +97,29 @@ export async function updateContent(
   patch: Partial<ContentInput>,
   source: string,
 ) {
-  const supabase = createSupabaseAdminClient();
   const current = await getContentById(id);
-  const { error: revisionError } = await supabase.from("content_revisions").insert({
-    content_id: id,
-    snapshot: current,
-    source,
-  });
-  if (revisionError) throw revisionError;
-
-  const { data, error } = await supabase
-    .from("content")
-    .update({ ...patch, updated_at: new Date().toISOString() })
-    .eq("id", id)
-    .select()
-    .single();
-  if (error) throw error;
-  return data as ContentItem;
+  const next = { ...current, ...patch };
+  const sql = getSql();
+  const [, updated] = await sql.transaction([
+    sql`select set_config('app.revision_source', ${source}, true)`,
+    sql`
+      update content
+      set
+        kind = ${next.kind},
+        slug = ${next.slug},
+        title = ${next.title},
+        summary = ${next.summary},
+        body_markdown = ${next.body_markdown},
+        seo_title = ${next.seo_title},
+        seo_description = ${next.seo_description},
+        cover_image_url = ${next.cover_image_url},
+        featured = ${next.featured},
+        updated_at = now()
+      where id = ${id}
+      returning *
+    `,
+  ]);
+  return updated[0] as ContentItem;
 }
 
 export async function setContentStatus(
@@ -123,25 +128,15 @@ export async function setContentStatus(
   source: string,
 ) {
   const publishedAt = status === "published" ? new Date().toISOString() : null;
-  const supabase = createSupabaseAdminClient();
-  const current = await getContentById(id);
-  const { error: revisionError } = await supabase.from("content_revisions").insert({
-    content_id: id,
-    snapshot: current,
-    source,
-  });
-  if (revisionError) throw revisionError;
-
-  const { data, error } = await supabase
-    .from("content")
-    .update({
-      status,
-      published_at: publishedAt,
-      updated_at: new Date().toISOString(),
-    })
-    .eq("id", id)
-    .select()
-    .single();
-  if (error) throw error;
-  return data as ContentItem;
+  const sql = getSql();
+  const [, updated] = await sql.transaction([
+    sql`select set_config('app.revision_source', ${source}, true)`,
+    sql`
+      update content
+      set status = ${status}, published_at = ${publishedAt}, updated_at = now()
+      where id = ${id}
+      returning *
+    `,
+  ]);
+  return updated[0] as ContentItem;
 }
