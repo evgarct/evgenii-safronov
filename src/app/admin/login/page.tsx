@@ -1,6 +1,6 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { LoginForm } from "@/app/admin/login/login-form";
-import { supabaseConfigured } from "@/lib/supabase/config";
+import { authConfigured } from "@/auth";
 
 export const metadata = { title: "Editor sign in" };
 
@@ -13,15 +13,15 @@ export default function AdminLoginPage() {
         <p className="mt-3 mb-8 text-sm leading-6 text-muted-foreground">
           Access is restricted to the configured owner account.
         </p>
-        {!supabaseConfigured && (
+        {!authConfigured && (
           <Alert className="mb-5">
-            <AlertTitle>Supabase is not configured</AlertTitle>
+            <AlertTitle>GitHub authentication is not configured</AlertTitle>
             <AlertDescription>
-              Add the variables from .env.example to enable authentication.
+              Add the Auth.js variables from .env.example to enable sign in.
             </AlertDescription>
           </Alert>
         )}
-        <LoginForm configured={supabaseConfigured} />
+        <LoginForm configured={authConfigured} />
       </div>
     </div>
   );

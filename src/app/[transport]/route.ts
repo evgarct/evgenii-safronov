@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+import { timingSafeEqual } from "node:crypto";
 import {
   createMcpHandler,
   withMcpAuth,
@@ -17,8 +17,6 @@ import {
   contentStatuses,
   contentUpdateSchema,
 } from "@/lib/content-types";
-import { ownerEmail } from "@/lib/supabase/config";
-import { createSupabaseAdminClient } from "@/lib/supabase/server";
 
 function text(value: unknown) {
   return {
@@ -92,29 +90,6 @@ const handler = createMcpHandler(
       );
     }
 
-    server.registerTool(
-      "upload_asset",
-      {
-        title: "Upload editorial asset",
-        description: "Upload a base64-encoded image to the public content-assets bucket.",
-        inputSchema: {
-          filename: z.string().min(1).max(180),
-          mime_type: z.string().regex(/^image\//),
-          base64_data: z.string().min(1),
-        },
-      },
-      async ({ filename, mime_type, base64_data }) => {
-        const supabase = createSupabaseAdminClient();
-        const path = `${new Date().getUTCFullYear()}/${crypto.randomUUID()}-${filename}`;
-        const body = Buffer.from(base64_data, "base64");
-        const { error } = await supabase.storage
-          .from("content-assets")
-          .upload(path, body, { contentType: mime_type, upsert: false });
-        if (error) throw error;
-        const { data } = supabase.storage.from("content-assets").getPublicUrl(path);
-        return text({ path, url: data.publicUrl });
-      },
-    );
   },
   {
     serverInfo: { name: "evgenii-safronov-editor", version: "1.0.0" },
@@ -129,32 +104,27 @@ const handler = createMcpHandler(
 const authenticatedHandler = withMcpAuth(
   handler,
   async (_request, token) => {
-    if (
-      !token ||
-      !process.env.NEXT_PUBLIC_SUPABASE_URL ||
-      !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
-    ) {
+    const expected = process.env.MCP_ACCESS_TOKEN;
+    if (!token || !expected) {
       return undefined;
     }
 
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
-      { auth: { persistSession: false, autoRefreshToken: false } },
-    );
-    const {
-      data: { user },
-      error,
-    } = await supabase.auth.getUser(token);
-    if (error || user?.email?.toLowerCase() !== ownerEmail.toLowerCase()) {
+    const actualBuffer = Buffer.from(token);
+    const expectedBuffer = Buffer.from(expected);
+    if (
+      actualBuffer.length !== expectedBuffer.length ||
+      !timingSafeEqual(actualBuffer, expectedBuffer)
+    ) {
       return undefined;
     }
 
     return {
       token,
-      clientId: user.id,
+      clientId: "portfolio-owner",
       scopes: ["content:read", "content:write", "content:publish"],
-      extra: { email: user.email },
+      extra: {
+        email: process.env.OWNER_EMAIL ?? "isafronovms@gmail.com",
+      },
     };
   },
   {

@@ -32,7 +32,7 @@ export const Error: Story = {
       <Alert variant="destructive">
         <AlertTitle>Content could not be loaded</AlertTitle>
         <AlertDescription>
-          Check the Supabase connection and try again.
+          Check the Neon connection and try again.
         </AlertDescription>
       </Alert>
     </div>

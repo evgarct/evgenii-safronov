@@ -1,10 +1,31 @@
-import {
-  metadataCorsOptionsRequestHandler,
-  protectedResourceHandler,
-} from "mcp-handler";
+import { NextResponse } from "next/server";
 
-const authServer = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "https://example.supabase.co";
-const handler = protectedResourceHandler({ authServerUrls: [authServer] });
-const options = metadataCorsOptionsRequestHandler();
+export function GET() {
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
-export { handler as GET, options as OPTIONS };
+  return NextResponse.json(
+    {
+      resource: `${siteUrl}/mcp`,
+      bearer_methods_supported: ["header"],
+      scopes_supported: ["content:read", "content:write", "content:publish"],
+    },
+    {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+      },
+    },
+  );
+}
+
+export function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
+  });
+}

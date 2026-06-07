@@ -1,14 +1,15 @@
 import { redirect } from "next/navigation";
-import { ownerEmail, supabaseConfigured } from "@/lib/supabase/config";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { auth } from "@/auth";
+
+const ownerEmail = (
+  process.env.OWNER_EMAIL ?? "isafronovms@gmail.com"
+).toLowerCase();
 
 export async function getOwner() {
-  if (!supabaseConfigured) return null;
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  return user?.email?.toLowerCase() === ownerEmail.toLowerCase() ? user : null;
+  const session = await auth();
+  return session?.user?.email?.toLowerCase() === ownerEmail
+    ? session.user
+    : null;
 }
 
 export async function requireOwner() {
