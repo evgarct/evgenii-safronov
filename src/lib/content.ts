@@ -1,5 +1,6 @@
 import { demoContent } from "@/lib/demo-content";
 import { databaseConfigured, getSql } from "@/lib/db";
+import { flagshipProject, flagshipProjectSlug, mergeFlagshipProject } from "@/lib/flagship-project";
 import type {
   ContentInput,
   ContentItem,
@@ -9,9 +10,10 @@ import type {
 
 export async function listPublished(kind?: ContentKind) {
   if (!databaseConfigured) {
-    return demoContent
+    const items = demoContent
       .filter((item) => item.status === "published" && (!kind || item.kind === kind))
       .sort((a, b) => (b.published_at ?? "").localeCompare(a.published_at ?? ""));
+    return !kind || kind === "project" ? mergeFlagshipProject(items) : items;
   }
 
   const sql = getSql();
@@ -26,10 +28,15 @@ export async function listPublished(kind?: ContentKind) {
         where status = 'published'
         order by published_at desc
       `;
-  return rows as ContentItem[];
+  const items = rows as ContentItem[];
+  return !kind || kind === "project" ? mergeFlagshipProject(items) : items;
 }
 
 export async function getPublishedBySlug(kind: ContentKind, slug: string) {
+  if (kind === "project" && slug === flagshipProjectSlug) {
+    return flagshipProject;
+  }
+
   if (!databaseConfigured) {
     return (
       demoContent.find(

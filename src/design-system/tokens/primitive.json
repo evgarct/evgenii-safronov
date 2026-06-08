@@ -8,6 +8,7 @@
       "200": { "$value": "#e5e5e5", "$description": "Default light border" },
       "400": { "$value": "#a3a3a3", "$description": "Muted neutral foreground" },
       "500": { "$value": "#737373", "$description": "Secondary neutral foreground" },
+      "600": { "$value": "#525252", "$description": "Accessible secondary foreground on light muted surfaces" },
       "700": { "$value": "#404040", "$description": "Elevated dark surface" },
       "800": { "$value": "#262626", "$description": "Default dark surface" },
       "900": { "$value": "#171717", "$description": "Strong neutral foreground" },

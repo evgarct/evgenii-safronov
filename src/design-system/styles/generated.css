@@ -7,6 +7,7 @@
   --color-neutral-200: #e5e5e5;
   --color-neutral-400: #a3a3a3;
   --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
   --color-neutral-700: #404040;
   --color-neutral-800: #262626;
   --color-neutral-900: #171717;
@@ -143,7 +144,7 @@
   --surface-inverse: var(--color-neutral-900);
   --surface-muted: var(--color-neutral-100);
   --text-primary: var(--color-neutral-900);
-  --text-secondary: var(--color-neutral-500);
+  --text-secondary: var(--color-neutral-600);
   --text-inverse: var(--color-neutral-0);
   --text-brand: var(--color-orange-700);
   --text-danger: var(--color-red-700);
