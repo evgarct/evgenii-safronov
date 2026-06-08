@@ -55,6 +55,7 @@
       linear-gradient(to bottom, color-mix(in oklab, var(--border) 35%, transparent) 1px, transparent 1px);
     background-size: 48px 48px;
     background-attachment: fixed;
+    text-rendering: optimizeLegibility;
   }
   html {
     @apply font-sans;
@@ -113,5 +114,19 @@
 
   .prose-editorial pre code {
     @apply bg-transparent p-0;
+  }
+
+  .case-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+  }
+
+  .case-section h2,
+  .case-section h3 {
+    text-wrap: balance;
+  }
+
+  .case-section p {
+    text-wrap: pretty;
   }
 }

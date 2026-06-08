@@ -1,13 +1,40 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { DesignSystemKnowledgePlatformCase } from "@/components/design-system-knowledge-platform-case";
 import { Markdown } from "@/components/markdown";
 import { getPublishedBySlug } from "@/lib/content";
+import { flagshipProjectSlug } from "@/lib/flagship-project";
 
 type Props = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getPublishedBySlug("project", slug);
+  if (!project) return {};
+
+  const title = project.seo_title ?? project.title;
+  const description = project.seo_description ?? project.summary;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url: `/projects/${project.slug}`,
+    },
+  };
+}
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const project = await getPublishedBySlug("project", slug);
   if (!project) notFound();
+
+  if (slug === flagshipProjectSlug) {
+    return <DesignSystemKnowledgePlatformCase />;
+  }
 
   return (
     <article className="page-shell py-16 sm:py-24">

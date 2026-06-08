@@ -11,7 +11,7 @@
   "text": {
     "$type": "color",
     "primary": { "$value": "{color.neutral.900}", "$description": "Primary readable text" },
-    "secondary": { "$value": "{color.neutral.500}", "$description": "Secondary supporting text" },
+    "secondary": { "$value": "{color.neutral.600}", "$description": "Secondary supporting text" },
     "inverse": { "$value": "{color.neutral.0}", "$description": "Text on inverse surfaces" },
     "brand": { "$value": "{color.orange.700}", "$description": "Brand-emphasis text" },
     "danger": { "$value": "{color.red.700}", "$description": "Destructive or error text" }
