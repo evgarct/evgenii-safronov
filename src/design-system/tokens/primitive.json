@@ -1,0 +1,145 @@
+{
+  "color": {
+    "$type": "color",
+    "neutral": {
+      "0": { "$value": "#ffffff", "$description": "Pure white" },
+      "50": { "$value": "#fafafa", "$description": "Lightest neutral surface" },
+      "100": { "$value": "#f5f5f5", "$description": "Subtle neutral surface" },
+      "200": { "$value": "#e5e5e5", "$description": "Default light border" },
+      "400": { "$value": "#a3a3a3", "$description": "Muted neutral foreground" },
+      "500": { "$value": "#737373", "$description": "Secondary neutral foreground" },
+      "700": { "$value": "#404040", "$description": "Elevated dark surface" },
+      "800": { "$value": "#262626", "$description": "Default dark surface" },
+      "900": { "$value": "#171717", "$description": "Strong neutral foreground" },
+      "950": { "$value": "#0a0a0a", "$description": "Deep neutral surface" },
+      "1000": { "$value": "#000000", "$description": "Pure black for OLED surfaces" }
+    },
+    "orange": {
+      "100": { "$value": "#ffedd5", "$description": "Subtle brand surface" },
+      "500": { "$value": "#f97316", "$description": "Primary brand action" },
+      "600": { "$value": "#ea580c", "$description": "Primary brand hover" },
+      "700": { "$value": "#c2410c", "$description": "Accessible primary action on light surfaces" }
+    },
+    "red": {
+      "100": { "$value": "#fee2e2", "$description": "Subtle destructive surface" },
+      "500": { "$value": "#ef4444", "$description": "Destructive action" },
+      "700": { "$value": "#b91c1c", "$description": "Strong destructive foreground" }
+    },
+    "green": {
+      "100": { "$value": "#dcfce7", "$description": "Subtle success surface" },
+      "600": { "$value": "#16a34a", "$description": "Success foreground" }
+    },
+    "amber": {
+      "100": { "$value": "#fef3c7", "$description": "Subtle warning surface" },
+      "600": { "$value": "#d97706", "$description": "Warning foreground" }
+    },
+    "blue": {
+      "100": { "$value": "#dbeafe", "$description": "Subtle information surface" },
+      "600": { "$value": "#2563eb", "$description": "Information foreground" }
+    },
+    "alpha": {
+      "black-10": { "$value": "#0000001a", "$description": "Light overlay scrim" },
+      "black-55": { "$value": "#0000008c", "$description": "Strong overlay scrim" },
+      "white-10": { "$value": "#ffffff1a", "$description": "Dark theme border" },
+      "white-15": { "$value": "#ffffff26", "$description": "Dark theme input surface" }
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "0": { "$value": "0rem", "$description": "No spacing" },
+    "1": { "$value": "0.25rem", "$description": "Extra small spacing" },
+    "1-5": { "$value": "0.375rem", "$description": "Compact inline spacing" },
+    "2": { "$value": "0.5rem", "$description": "Small spacing" },
+    "2-5": { "$value": "0.625rem", "$description": "Default control inset" },
+    "3": { "$value": "0.75rem", "$description": "Medium spacing" },
+    "4": { "$value": "1rem", "$description": "Default layout spacing" },
+    "5": { "$value": "1.25rem", "$description": "Large control spacing" },
+    "6": { "$value": "1.5rem", "$description": "Large layout spacing" },
+    "8": { "$value": "2rem", "$description": "Section spacing" },
+    "10": { "$value": "2.5rem", "$description": "Large section spacing" },
+    "12": { "$value": "3rem", "$description": "Extra large section spacing" },
+    "16": { "$value": "4rem", "$description": "Page spacing" },
+    "20": { "$value": "5rem", "$description": "Large page spacing" },
+    "24": { "$value": "6rem", "$description": "Editorial page spacing" }
+  },
+  "size": {
+    "$type": "dimension",
+    "control": {
+      "xs": { "$value": "1.5rem", "$description": "Extra small control height" },
+      "sm": { "$value": "1.75rem", "$description": "Small control height" },
+      "md": { "$value": "2rem", "$description": "Default control height" },
+      "lg": { "$value": "2.25rem", "$description": "Large control height" }
+    },
+    "icon": {
+      "sm": { "$value": "0.75rem", "$description": "Small icon size" },
+      "md": { "$value": "1rem", "$description": "Default icon size" },
+      "lg": { "$value": "1.25rem", "$description": "Large icon size" }
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "sm": { "$value": "0.375rem", "$description": "Small corner radius" },
+    "md": { "$value": "0.5rem", "$description": "Default control radius" },
+    "lg": { "$value": "0.625rem", "$description": "Default container radius" },
+    "xl": { "$value": "0.875rem", "$description": "Elevated container radius" },
+    "full": { "$value": "9999px", "$description": "Pill radius" }
+  },
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "sans": { "$value": "var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif", "$description": "Primary interface typeface" },
+      "mono": { "$value": "var(--font-geist-mono), ui-monospace, monospace", "$description": "Monospace typeface" }
+    },
+    "size": {
+      "$type": "dimension",
+      "caption": { "$value": "0.75rem", "$description": "Caption text size" },
+      "label": { "$value": "0.875rem", "$description": "Label text size" },
+      "body": { "$value": "1rem", "$description": "Body text size" },
+      "title": { "$value": "1.25rem", "$description": "Title text size" },
+      "heading": { "$value": "2.25rem", "$description": "Heading text size" },
+      "display": { "$value": "4rem", "$description": "Display text size" }
+    },
+    "line-height": {
+      "$type": "number",
+      "tight": { "$value": 1.1, "$description": "Tight display line height" },
+      "normal": { "$value": 1.5, "$description": "Default body line height" },
+      "relaxed": { "$value": 1.75, "$description": "Relaxed editorial line height" }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular": { "$value": 400, "$description": "Regular text weight" },
+      "medium": { "$value": 500, "$description": "Medium emphasis weight" },
+      "semibold": { "$value": 600, "$description": "Strong heading weight" }
+    },
+    "tracking": {
+      "$type": "dimension",
+      "tight": { "$value": "-0.025em", "$description": "Tight heading tracking" },
+      "normal": { "$value": "0em", "$description": "Default tracking" },
+      "wide": { "$value": "0.08em", "$description": "Wide label tracking" }
+    }
+  },
+  "duration": {
+    "$type": "duration",
+    "fast": { "$value": "100ms", "$description": "Immediate UI feedback" },
+    "normal": { "$value": "180ms", "$description": "Default transition duration" },
+    "slow": { "$value": "300ms", "$description": "Emphasized transition duration" }
+  },
+  "easing": {
+    "$type": "cubicBezier",
+    "standard": { "$value": "cubic-bezier(0.2, 0, 0, 1)", "$description": "Standard interface easing" },
+    "emphasized": { "$value": "cubic-bezier(0.2, 0, 0, 1.2)", "$description": "Emphasized entrance easing" }
+  },
+  "breakpoint": {
+    "$type": "dimension",
+    "sm": { "$value": "40rem", "$description": "Small viewport breakpoint" },
+    "md": { "$value": "48rem", "$description": "Medium viewport breakpoint" },
+    "lg": { "$value": "64rem", "$description": "Large viewport breakpoint" },
+    "xl": { "$value": "80rem", "$description": "Extra large viewport breakpoint" }
+  },
+  "container": {
+    "$type": "dimension",
+    "narrow": { "$value": "42rem", "$description": "Reading-width container" },
+    "default": { "$value": "64rem", "$description": "Default content container" },
+    "wide": { "$value": "80rem", "$description": "Wide page container" }
+  }
+}

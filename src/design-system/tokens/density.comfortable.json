@@ -1,0 +1,20 @@
+{
+  "spacing": {
+    "control": {
+      "$type": "dimension",
+      "xs": { "$value": "{space.1-5}", "$description": "Comfortable extra-small control gap" },
+      "sm": { "$value": "{space.2}", "$description": "Comfortable small control gap" },
+      "md": { "$value": "{space.2-5}", "$description": "Comfortable default control inset" },
+      "lg": { "$value": "{space.4}", "$description": "Comfortable large control inset" }
+    }
+  },
+  "control": {
+    "height": {
+      "$type": "dimension",
+      "xs": { "$value": "{size.control.xs}", "$description": "Comfortable extra-small control height" },
+      "sm": { "$value": "{size.control.sm}", "$description": "Comfortable small control height" },
+      "md": { "$value": "{size.control.md}", "$description": "Comfortable default control height" },
+      "lg": { "$value": "{size.control.lg}", "$description": "Comfortable large control height" }
+    }
+  }
+}

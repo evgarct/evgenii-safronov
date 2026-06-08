@@ -1,0 +1,19 @@
+{
+  "dialog": {
+    "background": { "$type": "color", "$value": "{surface.overlay}", "$description": "Dialog content background" },
+    "foreground": { "$type": "color", "$value": "{text.primary}", "$description": "Dialog content foreground" },
+    "border": { "$type": "color", "$value": "{border.default}", "$description": "Dialog content border" },
+    "overlay": { "$type": "color", "$value": "{color.alpha.black-55}", "$description": "Dialog modal scrim" },
+    "radius": { "$type": "dimension", "$value": "{radius.xl}", "$description": "Dialog content radius" },
+    "padding": { "$type": "dimension", "$value": "{space.4}", "$description": "Dialog content padding" },
+    "gap": { "$type": "dimension", "$value": "{space.4}", "$description": "Dialog content gap" },
+    "viewport-inset": { "$type": "dimension", "$value": "{space.8}", "$description": "Minimum dialog viewport inset" }
+  },
+  "tooltip": {
+    "background": { "$type": "color", "$value": "{surface.inverse}", "$description": "Tooltip background" },
+    "foreground": { "$type": "color", "$value": "{text.inverse}", "$description": "Tooltip foreground" },
+    "radius": { "$type": "dimension", "$value": "{radius.md}", "$description": "Tooltip radius" },
+    "padding-block": { "$type": "dimension", "$value": "{space.1-5}", "$description": "Tooltip vertical padding" },
+    "padding-inline": { "$type": "dimension", "$value": "{space.2}", "$description": "Tooltip horizontal padding" }
+  }
+}

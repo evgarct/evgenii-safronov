@@ -1,0 +1,20 @@
+{
+  "spacing": {
+    "control": {
+      "$type": "dimension",
+      "xs": { "$value": "{space.1}", "$description": "Compact extra-small control gap" },
+      "sm": { "$value": "{space.1-5}", "$description": "Compact small control gap" },
+      "md": { "$value": "{space.2}", "$description": "Compact default control inset" },
+      "lg": { "$value": "{space.3}", "$description": "Compact large control inset" }
+    }
+  },
+  "control": {
+    "height": {
+      "$type": "dimension",
+      "xs": { "$value": "1.375rem", "$description": "Compact extra-small control height" },
+      "sm": { "$value": "1.625rem", "$description": "Compact small control height" },
+      "md": { "$value": "1.875rem", "$description": "Compact default control height" },
+      "lg": { "$value": "2.125rem", "$description": "Compact large control height" }
+    }
+  }
+}
