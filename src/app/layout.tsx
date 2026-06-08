@@ -2,7 +2,18 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
+
+const themeScript = `
+  try {
+    const stored = localStorage.getItem("theme");
+    const theme = ["light", "dark", "oled"].includes(stored) ? stored : "light";
+    document.documentElement.dataset.theme = theme;
+  } catch {
+    document.documentElement.dataset.theme = "light";
+  }
+`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,14 +49,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="light"
+      data-density="comfortable"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-full bg-background text-foreground">
-        <div className="flex min-h-screen flex-col">
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-        </div>
+        <TooltipProvider>
+          <div className="flex min-h-screen flex-col">
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+          </div>
+        </TooltipProvider>
       </body>
     </html>
   );

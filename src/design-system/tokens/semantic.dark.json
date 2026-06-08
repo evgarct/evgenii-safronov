@@ -1,0 +1,57 @@
+{
+  "surface": {
+    "$type": "color",
+    "default": { "$value": "{color.neutral.900}", "$description": "Default page background" },
+    "subtle": { "$value": "{color.neutral.950}", "$description": "Subtle section background" },
+    "elevated": { "$value": "{color.neutral.800}", "$description": "Raised content background" },
+    "overlay": { "$value": "{color.neutral.800}", "$description": "Overlay content background" },
+    "inverse": { "$value": "{color.neutral.0}", "$description": "Inverse emphasis background" },
+    "muted": { "$value": "{color.neutral.700}", "$description": "Muted control background" }
+  },
+  "text": {
+    "$type": "color",
+    "primary": { "$value": "{color.neutral.50}", "$description": "Primary readable text" },
+    "secondary": { "$value": "{color.neutral.400}", "$description": "Secondary supporting text" },
+    "inverse": { "$value": "{color.neutral.900}", "$description": "Text on inverse surfaces" },
+    "brand": { "$value": "{color.orange.500}", "$description": "Brand-emphasis text" },
+    "danger": { "$value": "{color.red.500}", "$description": "Destructive or error text" }
+  },
+  "border": {
+    "$type": "color",
+    "default": { "$value": "{color.alpha.white-15}", "$description": "Default control and container border" },
+    "subtle": { "$value": "{color.alpha.white-10}", "$description": "Low-emphasis divider" },
+    "strong": { "$value": "{color.neutral.500}", "$description": "High-emphasis border" },
+    "focus": { "$value": "{color.orange.500}", "$description": "Visible keyboard focus border" },
+    "danger": { "$value": "{color.red.500}", "$description": "Invalid control border" }
+  },
+  "action": {
+    "$type": "color",
+    "primary": { "$value": "{color.orange.500}", "$description": "Primary action background" },
+    "primary-hover": { "$value": "{color.orange.600}", "$description": "Primary action hover background" },
+    "primary-foreground": { "$value": "{color.neutral.1000}", "$description": "Primary action foreground" },
+    "secondary": { "$value": "{color.neutral.700}", "$description": "Secondary action background" },
+    "secondary-hover": { "$value": "{color.neutral.500}", "$description": "Secondary action hover background" },
+    "secondary-foreground": { "$value": "{color.neutral.50}", "$description": "Secondary action foreground" },
+    "danger": { "$value": "{color.neutral.800}", "$description": "Destructive action background" },
+    "danger-hover": { "$value": "{color.red.700}", "$description": "Destructive action hover background" },
+    "danger-foreground": { "$value": "{color.red.500}", "$description": "Destructive action foreground" }
+  },
+  "status": {
+    "$type": "color",
+    "success": { "$value": "{color.green.600}", "$description": "Success status foreground" },
+    "success-subtle": { "$value": "{color.neutral.800}", "$description": "Success status background" },
+    "warning": { "$value": "{color.amber.600}", "$description": "Warning status foreground" },
+    "warning-subtle": { "$value": "{color.neutral.800}", "$description": "Warning status background" },
+    "error": { "$value": "{color.red.500}", "$description": "Error status foreground" },
+    "error-subtle": { "$value": "{color.neutral.800}", "$description": "Error status background" },
+    "info": { "$value": "{color.blue.600}", "$description": "Information status foreground" },
+    "info-subtle": { "$value": "{color.neutral.800}", "$description": "Information status background" }
+  },
+  "navigation": {
+    "$type": "color",
+    "background": { "$value": "{surface.default}", "$description": "Navigation background" },
+    "foreground": { "$value": "{text.secondary}", "$description": "Default navigation foreground" },
+    "active": { "$value": "{text.primary}", "$description": "Active navigation foreground" },
+    "hover": { "$value": "{surface.muted}", "$description": "Navigation hover background" }
+  }
+}

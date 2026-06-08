@@ -13,11 +13,13 @@
     "test-storybook": "vitest run --project storybook",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "tokens:build": "node scripts/build-tokens.mjs",
+    "tokens:check": "node scripts/build-tokens.mjs --check",
     "db:migrate": "node scripts/apply-neon-migration.mjs neon/migrations/20260607190000_initial_content_system.sql",
     "db:seed": "node scripts/apply-neon-migration.mjs neon/seeds/demo_content.sql",
     "db:verify": "node scripts/verify-neon.mjs",
     "mcp:verify": "node scripts/verify-mcp.mjs",
-    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm build-storybook"
+    "check": "corepack pnpm tokens:check && corepack pnpm lint && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build && corepack pnpm build-storybook"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.26.0",
@@ -59,6 +61,7 @@
     "playwright": "^1.60.0",
     "prettier": "^3.8.3",
     "storybook": "^10.4.2",
+    "style-dictionary": "5.1.1",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.8",

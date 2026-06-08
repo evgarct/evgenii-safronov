@@ -1,0 +1,75 @@
+{
+  "shape": {
+    "control": { "$type": "dimension", "$value": "{radius.md}", "$description": "Default interactive control radius" },
+    "container": { "$type": "dimension", "$value": "{radius.lg}", "$description": "Default content container radius" },
+    "elevated": { "$type": "dimension", "$value": "{radius.xl}", "$description": "Elevated content radius" },
+    "pill": { "$type": "dimension", "$value": "{radius.full}", "$description": "Pill and badge radius" }
+  },
+  "layout": {
+    "container": {
+      "narrow": { "$type": "dimension", "$value": "{container.narrow}", "$description": "Reading-width layout container" },
+      "default": { "$type": "dimension", "$value": "{container.default}", "$description": "Default layout container" },
+      "wide": { "$type": "dimension", "$value": "{container.wide}", "$description": "Wide layout container" }
+    },
+    "breakpoint": {
+      "sm": { "$type": "dimension", "$value": "{breakpoint.sm}", "$description": "Small responsive boundary" },
+      "md": { "$type": "dimension", "$value": "{breakpoint.md}", "$description": "Medium responsive boundary" },
+      "lg": { "$type": "dimension", "$value": "{breakpoint.lg}", "$description": "Large responsive boundary" },
+      "xl": { "$type": "dimension", "$value": "{breakpoint.xl}", "$description": "Extra-large responsive boundary" }
+    }
+  },
+  "typography": {
+    "display": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.sans}", "$description": "Display font family" },
+      "size": { "$type": "dimension", "$value": "{font.size.display}", "$description": "Display font size" },
+      "line-height": { "$type": "number", "$value": "{font.line-height.tight}", "$description": "Display line height" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.semibold}", "$description": "Display font weight" },
+      "letter-spacing": { "$type": "dimension", "$value": "{font.tracking.tight}", "$description": "Display letter spacing" }
+    },
+    "heading": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.sans}", "$description": "Heading font family" },
+      "size": { "$type": "dimension", "$value": "{font.size.heading}", "$description": "Heading font size" },
+      "line-height": { "$type": "number", "$value": "{font.line-height.tight}", "$description": "Heading line height" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.semibold}", "$description": "Heading font weight" },
+      "letter-spacing": { "$type": "dimension", "$value": "{font.tracking.tight}", "$description": "Heading letter spacing" }
+    },
+    "title": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.sans}", "$description": "Title font family" },
+      "size": { "$type": "dimension", "$value": "{font.size.title}", "$description": "Title font size" },
+      "line-height": { "$type": "number", "$value": "{font.line-height.normal}", "$description": "Title line height" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.medium}", "$description": "Title font weight" },
+      "letter-spacing": { "$type": "dimension", "$value": "{font.tracking.tight}", "$description": "Title letter spacing" }
+    },
+    "body": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.sans}", "$description": "Body font family" },
+      "size": { "$type": "dimension", "$value": "{font.size.body}", "$description": "Body font size" },
+      "line-height": { "$type": "number", "$value": "{font.line-height.normal}", "$description": "Body line height" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}", "$description": "Body font weight" },
+      "letter-spacing": { "$type": "dimension", "$value": "{font.tracking.normal}", "$description": "Body letter spacing" }
+    },
+    "caption": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.sans}", "$description": "Caption font family" },
+      "size": { "$type": "dimension", "$value": "{font.size.caption}", "$description": "Caption font size" },
+      "line-height": { "$type": "number", "$value": "{font.line-height.normal}", "$description": "Caption line height" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}", "$description": "Caption font weight" },
+      "letter-spacing": { "$type": "dimension", "$value": "{font.tracking.normal}", "$description": "Caption letter spacing" }
+    },
+    "label": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.sans}", "$description": "Label font family" },
+      "size": { "$type": "dimension", "$value": "{font.size.label}", "$description": "Label font size" },
+      "line-height": { "$type": "number", "$value": "{font.line-height.normal}", "$description": "Label line height" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.medium}", "$description": "Label font weight" },
+      "letter-spacing": { "$type": "dimension", "$value": "{font.tracking.normal}", "$description": "Label letter spacing" }
+    }
+  },
+  "motion": {
+    "interaction": {
+      "duration": { "$type": "duration", "$value": "{duration.fast}", "$description": "Control feedback duration" },
+      "easing": { "$type": "cubicBezier", "$value": "{easing.standard}", "$description": "Control feedback easing" }
+    },
+    "entrance": {
+      "duration": { "$type": "duration", "$value": "{duration.normal}", "$description": "Overlay entrance duration" },
+      "easing": { "$type": "cubicBezier", "$value": "{easing.emphasized}", "$description": "Overlay entrance easing" }
+    }
+  }
+}
