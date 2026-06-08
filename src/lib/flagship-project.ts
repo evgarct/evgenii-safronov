@@ -22,6 +22,12 @@ export const flagshipProject: ContentItem = {
   updated_at: "2026-06-08T09:00:00.000Z",
 };
 
+function publishedAtTimestamp(value: ContentItem["published_at"] | Date) {
+  if (!value) return 0;
+  const timestamp = value instanceof Date ? value.getTime() : Date.parse(value);
+  return Number.isNaN(timestamp) ? 0 : timestamp;
+}
+
 export function mergeFlagshipProject(items: ContentItem[]) {
   return [
     flagshipProject,
@@ -32,7 +38,9 @@ export function mergeFlagshipProject(items: ContentItem[]) {
           item.slug === flagshipProject.slug
         ),
     ),
-  ].sort((a, b) =>
-    (b.published_at ?? "").localeCompare(a.published_at ?? ""),
+  ].sort(
+    (a, b) =>
+      publishedAtTimestamp(b.published_at) -
+      publishedAtTimestamp(a.published_at),
   );
 }

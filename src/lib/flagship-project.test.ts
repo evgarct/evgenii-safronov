@@ -26,7 +26,7 @@ describe("mergeFlagshipProject", () => {
     expect(result[1].slug).toBe("another-project");
   });
 
-  it("deduplicates a Supabase row with the flagship slug", () => {
+  it("deduplicates a database row with the flagship slug", () => {
     const result = mergeFlagshipProject([
       project({
         slug: flagshipProjectSlug,
@@ -36,6 +36,15 @@ describe("mergeFlagshipProject", () => {
     ]);
 
     expect(result).toEqual([flagshipProject]);
+  });
+
+  it("sorts rows when the database driver returns published dates as Date objects", () => {
+    const databaseProject = project({
+      slug: "database-project",
+      published_at: new Date("2026-06-09T09:00:00.000Z") as unknown as string,
+    });
+
+    expect(mergeFlagshipProject([databaseProject])[0]).toBe(databaseProject);
   });
 
   it("does not remove an article that happens to use the same slug", () => {
