@@ -9,7 +9,7 @@ export default async function BlogPage() {
     <div className="page-shell py-16 sm:py-24">
       <p className="eyebrow">Writing</p>
       <div className="mt-5 mb-16 grid gap-8 sm:grid-cols-[1.2fr_0.8fr] sm:items-end">
-        <h1 className="text-6xl font-semibold tracking-[-0.06em] sm:text-8xl">
+        <h1 className="font-heading text-6xl font-medium tracking-tight sm:text-8xl">
           Field notes.
         </h1>
         <p className="max-w-md text-lg leading-7 text-muted-foreground">

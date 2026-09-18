@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { ThemeSelector } from "@/components/theme-selector";
+import { siteConfig } from "@/lib/site-config";
 
 const nav = [
   ["About", "/about"],
   ["Projects", "/projects"],
   ["Writing", "/blog"],
+  ["Resume", "/resume"],
 ] as const;
 
 export function SiteHeader() {
@@ -13,9 +15,11 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b bg-[var(--navigation-background)]/88 backdrop-blur-xl">
       <div className="page-shell flex h-16 items-center justify-between">
         <Link href="/" className="group flex items-baseline gap-2">
-          <span className="text-sm font-semibold tracking-tight">ES</span>
+          <span className="font-heading text-base font-semibold tracking-tight">
+            {siteConfig.shortName}
+          </span>
           <span className="hidden text-xs text-muted-foreground sm:inline">
-            Product engineer
+            {siteConfig.role}
           </span>
         </Link>
         <nav className="flex items-center gap-3 text-sm sm:gap-7">
@@ -29,7 +33,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <a
-            href="mailto:isafronovms@gmail.com"
+            href={`mailto:${siteConfig.email}`}
             className="hidden items-center gap-1 font-medium sm:flex"
           >
             Contact <ArrowUpRight className="size-3.5" />

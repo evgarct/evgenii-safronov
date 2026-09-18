@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, FolderOpen, Newspaper } from "lucide-react";
 import type { ContentItem } from "@/lib/content-types";
 
 export function ContentList({
@@ -11,32 +11,34 @@ export function ContentList({
 }) {
   if (!items.length) {
     return (
-      <div className="border-y py-12 text-muted-foreground">
+      <div className="rounded-xl border py-12 text-center text-muted-foreground">
         Nothing published here yet.
       </div>
     );
   }
 
+  const Icon = basePath === "/projects" ? FolderOpen : Newspaper;
+
   return (
-    <div className="border-t">
-      {items.map((item, index) => (
+    <div className="flex flex-col gap-3">
+      {items.map((item) => (
         <Link
           key={item.id}
           href={`${basePath}/${item.slug}`}
-          className="group grid gap-3 border-b py-7 transition-colors hover:bg-muted/35 sm:grid-cols-[4rem_1fr_auto] sm:items-start sm:px-3"
+          className="group flex items-start gap-4 rounded-xl border bg-card/40 p-4 transition-colors hover:border-primary/50 hover:bg-muted/40 sm:items-center sm:gap-5 sm:p-5"
         >
-          <span className="font-mono text-xs text-muted-foreground">
-            {String(index + 1).padStart(2, "0")}
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-full border bg-background text-muted-foreground transition-colors group-hover:border-primary/50 group-hover:text-primary">
+            <Icon className="size-4" />
           </span>
-          <span>
-            <span className="block text-xl font-medium tracking-tight sm:text-2xl">
+          <span className="min-w-0 flex-1">
+            <span className="block text-lg font-medium tracking-tight sm:text-xl">
               {item.title}
             </span>
-            <span className="mt-2 block max-w-2xl text-sm leading-6 text-muted-foreground">
+            <span className="mt-1 block max-w-2xl truncate text-sm leading-6 text-muted-foreground sm:whitespace-normal">
               {item.summary}
             </span>
           </span>
-          <ArrowUpRight className="mt-1 size-5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+          <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
         </Link>
       ))}
     </div>

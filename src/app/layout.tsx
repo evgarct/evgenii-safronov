@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const themeScript = `
@@ -25,18 +26,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  axes: ["opsz", "SOFT", "WONK"],
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: {
-    default: "Evgenii Safronov — Product Engineer",
-    template: "%s — Evgenii Safronov",
+    default: `${siteConfig.name} — Design Systems for the AI Era`,
+    template: `%s — ${siteConfig.name}`,
   },
   description:
-    "Product engineer building useful, durable software across interfaces, systems, and AI tooling.",
+    "Staff product designer building the design systems, tokens, and AI-generation workflows that let teams ship trustworthy interfaces faster.",
   openGraph: {
-    title: "Evgenii Safronov — Product Engineer",
+    title: `${siteConfig.name} — Design Systems for the AI Era`,
     description:
-      "Portfolio, field notes, and selected work by Evgenii Safronov.",
+      "Portfolio, field notes, and selected work by Evgenii Safronov — design systems, accessibility, and AI-native product design.",
     type: "website",
   },
 };
@@ -52,7 +59,7 @@ export default function RootLayout({
       data-theme="light"
       data-density="comfortable"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

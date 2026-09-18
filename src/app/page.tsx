@@ -13,25 +13,25 @@ export default async function Home() {
   return (
     <>
       <section className="page-shell min-h-[calc(100svh-4rem)] py-12 sm:py-20">
-        <div className="grid min-h-[70svh] content-between gap-16">
+        <div className="grid min-h-[65svh] content-between gap-16">
           <div className="flex items-center justify-between">
-            <p className="eyebrow">Independent product engineer</p>
+            <p className="eyebrow">Staff Product Designer · Design Systems</p>
             <p className="hidden font-mono text-xs text-muted-foreground sm:block">
-              50.0755° N / 14.4378° E
+              50.0755° N / 14.4378° E — Prague
             </p>
           </div>
           <div>
-            <h1 className="max-w-6xl text-[clamp(3.7rem,11vw,10rem)] font-semibold leading-[0.82] tracking-[-0.075em]">
-              Evgenii
-              <br />
-              <span className="text-primary">Safronov.</span>
+            <h1 className="font-heading max-w-5xl text-[clamp(3rem,8.5vw,7.5rem)] font-medium leading-[0.92] tracking-tight">
+              Evgenii Safronov
+              <span className="text-primary">.</span>
             </h1>
             <div className="mt-10 grid gap-8 sm:grid-cols-[1fr_1.2fr] sm:items-end">
               <ArrowDownRight className="hidden size-12 text-muted-foreground sm:block" />
               <div className="max-w-xl">
                 <p className="text-xl leading-8 tracking-tight text-foreground/80 sm:text-2xl">
-                  I turn ambiguous product problems into clear interfaces,
-                  reliable systems, and software people can understand.
+                  I build the design systems, tokens, and AI-native workflows
+                  that let teams ship trustworthy interfaces faster —
+                  hands-on in Figma and in code, without losing craft.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Button asChild>
@@ -49,12 +49,12 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="border-y bg-foreground text-background">
-        <div className="page-shell grid gap-12 py-20 sm:grid-cols-[0.8fr_1.2fr] sm:py-28">
-          <p className="eyebrow !text-background/55">Working thesis</p>
-          <p className="max-w-4xl text-3xl font-medium leading-tight tracking-[-0.035em] sm:text-5xl">
-            The best products make hard systems feel legible without hiding
-            their real complexity.
+      <section className="page-shell pb-4">
+        <div className="grid gap-8 rounded-2xl border bg-card/40 p-8 sm:grid-cols-[0.8fr_1.2fr] sm:p-12">
+          <p className="eyebrow">Working thesis</p>
+          <p className="font-heading max-w-4xl text-2xl leading-snug tracking-tight text-foreground sm:text-4xl">
+            The best design systems make hard systems legible — to people
+            and to the AI tools now building on top of them.
           </p>
         </div>
       </section>
@@ -63,7 +63,7 @@ export default async function Home() {
         <div className="mb-10 flex items-end justify-between">
           <div>
             <p className="eyebrow">Selected work</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight">Projects</h2>
+            <h2 className="font-heading mt-3 text-4xl font-medium tracking-tight">Projects</h2>
           </div>
           <Link href="/projects" className="editorial-link text-sm">
             View all
@@ -76,7 +76,7 @@ export default async function Home() {
         <div className="mb-10 flex items-end justify-between">
           <div>
             <p className="eyebrow">Field notes</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight">Writing</h2>
+            <h2 className="font-heading mt-3 text-4xl font-medium tracking-tight">Writing</h2>
           </div>
           <Link href="/blog" className="editorial-link text-sm">
             Browse archive
