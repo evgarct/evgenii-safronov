@@ -20,7 +20,7 @@
   },
   "typography": {
     "display": {
-      "family": { "$type": "fontFamily", "$value": "{font.family.sans}", "$description": "Display font family" },
+      "family": { "$type": "fontFamily", "$value": "{font.family.serif}", "$description": "Display font family" },
       "size": { "$type": "dimension", "$value": "{font.size.display}", "$description": "Display font size" },
       "line-height": { "$type": "number", "$value": "{font.line-height.tight}", "$description": "Display line height" },
       "weight": { "$type": "fontWeight", "$value": "{font.weight.semibold}", "$description": "Display font weight" },

@@ -89,7 +89,8 @@
     "family": {
       "$type": "fontFamily",
       "sans": { "$value": "var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif", "$description": "Primary interface typeface" },
-      "mono": { "$value": "var(--font-geist-mono), ui-monospace, monospace", "$description": "Monospace typeface" }
+      "mono": { "$value": "var(--font-geist-mono), ui-monospace, monospace", "$description": "Monospace typeface" },
+      "serif": { "$value": "var(--font-fraunces), ui-serif, Georgia, serif", "$description": "Display/accent serif typeface for headlines and personal touches" }
     },
     "size": {
       "$type": "dimension",

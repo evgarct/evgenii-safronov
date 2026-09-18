@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { DesignSystemKnowledgePlatformCase } from "@/components/design-system-knowledge-platform-case";
 import { Markdown } from "@/components/markdown";
+import { caseStudyRegistry } from "@/lib/case-studies";
 import { getPublishedBySlug } from "@/lib/content";
-import { flagshipProjectSlug } from "@/lib/flagship-project";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -32,8 +31,9 @@ export default async function ProjectPage({ params }: Props) {
   const project = await getPublishedBySlug("project", slug);
   if (!project) notFound();
 
-  if (slug === flagshipProjectSlug) {
-    return <DesignSystemKnowledgePlatformCase />;
+  const CaseStudy = caseStudyRegistry[slug];
+  if (CaseStudy) {
+    return <CaseStudy />;
   }
 
   return (
@@ -41,7 +41,7 @@ export default async function ProjectPage({ params }: Props) {
       <header className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
         <p className="eyebrow">Selected work</p>
         <div>
-          <h1 className="text-6xl font-semibold tracking-[-0.06em] sm:text-8xl">
+          <h1 className="font-heading text-6xl font-medium tracking-tight sm:text-8xl">
             {project.title}
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-8 text-muted-foreground">

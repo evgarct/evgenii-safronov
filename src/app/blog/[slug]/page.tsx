@@ -31,7 +31,7 @@ export default async function ArticlePage({ params }: Props) {
               )
             : ""}
         </p>
-        <h1 className="mt-6 text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl">
+        <h1 className="font-heading mt-6 text-5xl font-medium leading-[1.02] tracking-tight sm:text-7xl">
           {article.title}
         </h1>
         <p className="mt-8 max-w-2xl text-xl leading-8 text-muted-foreground">

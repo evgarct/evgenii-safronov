@@ -59,6 +59,7 @@
   --radius-full: 9999px;
   --font-family-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-family-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-family-serif: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-size-caption: 0.75rem;
   --font-size-label: 0.875rem;
   --font-size-body: 1rem;
@@ -100,7 +101,7 @@
   --layout-breakpoint-md: var(--breakpoint-md);
   --layout-breakpoint-lg: var(--breakpoint-lg);
   --layout-breakpoint-xl: var(--breakpoint-xl);
-  --typography-display-family: var(--font-family-sans);
+  --typography-display-family: var(--font-family-serif);
   --typography-display-size: var(--font-size-display);
   --typography-display-line-height: var(--font-line-height-tight);
   --typography-display-weight: var(--font-weight-semibold);
