@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { ContentList } from "@/components/content-list";
+import { HeroBackground } from "@/components/hero-background";
 import { Button } from "@/components/ui/button";
 import { listPublished } from "@/lib/content";
 
@@ -12,7 +13,9 @@ export default async function Home() {
 
   return (
     <>
-      <section className="page-shell min-h-[calc(100svh-4rem)] py-12 sm:py-20">
+      <section className="relative isolate overflow-hidden">
+        <HeroBackground className="-z-10" />
+        <div className="page-shell min-h-[calc(100svh-4rem)] py-12 sm:py-20">
         <div className="grid min-h-[65svh] content-between gap-16">
           <div className="flex items-center justify-between">
             <p className="eyebrow">Staff Product Designer · Design Systems</p>
@@ -46,6 +49,7 @@ export default async function Home() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
 
